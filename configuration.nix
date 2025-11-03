@@ -97,6 +97,13 @@
   # Install firefox.
   programs.firefox.enable = true;
 
+  # Install 1password.
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = [ "djames" ];
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
