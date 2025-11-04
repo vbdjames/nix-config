@@ -6,6 +6,7 @@
 
   home.packages = with pkgs; [
     neofetch
+    thunderbird
   ];
 
   home.stateVersion = "25.05";
