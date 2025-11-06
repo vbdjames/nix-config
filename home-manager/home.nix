@@ -7,6 +7,7 @@
   home.packages = with pkgs; [
     neofetch
     thunderbird
+    obsidian
   ];
 
   home.stateVersion = "25.05";
@@ -19,4 +20,11 @@
     '';
   };
 
+  programs.vscode = {
+    enable = true;
+    extensions = with pkgs.vscode-extensions; [
+      vscodevim.vim
+      bbenoist.nix
+    ];
+  };
 }
