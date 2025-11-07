@@ -12,6 +12,17 @@
 
   home.stateVersion = "25.05";
 
+  home.shellAliases = {
+    ga="git add";
+    gcmsg="git commit -m";
+    gco="git checkout";
+    gd="git diff";
+    gst="git status";
+    gvb="git checkout -b";
+  };
+
+  programs.zsh.enable = true;
+
   programs.ssh = {
     enable = true;
     extraConfig = ''
