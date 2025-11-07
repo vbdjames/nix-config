@@ -7,14 +7,20 @@
 
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    sops-nix = {
+      url = "github:mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { 
+  outputs = inputs @ { 
     self,
     nixpkgs,
     home-manager,
+    sops-nix,
     ...
-  } @ inputs: let
+  }: let
     inherit (self) outputs;
     # Supported systems for flake packages, shell, etc.
     systems = [
@@ -45,6 +51,16 @@
     nixosConfigurations.hp840g8 = nixpkgs.lib.nixosSystem {
       modules = [
         ./nixos/configuration.nix
+        sops-nix.nixosModules.sops
+        {
+          sops = {
+            defaultSopsFile = ./secrets/secrets.yaml;
+            age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+            secrets = {
+              "example-key" = {};
+            };
+          };
+        }
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;

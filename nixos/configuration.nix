@@ -11,6 +11,14 @@
       ./hardware-configuration.nix
     ];
 
+  # sops
+  # sops.defaultSopsFile = ./secrets/secrets.yaml;
+  # sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  # sops.age.keyFile = "/var/lib/sops-nix/key.txt";
+  # sops.age.generateKey = true;
+  # sops.secrets.example-key = {};
+  # sops.secrets."myservice/my_subdir/my_secret" = {};
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -46,6 +54,10 @@
     LC_PAPER = "en_US.UTF-8";
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
+  };
+
+  services.openssh = {
+    enable = true;
   };
 
   # Enable the X11 windowing system.
@@ -116,6 +128,7 @@
     git
     vim
     wget
+    sops
   ];
 
   environment.variables.EDITOR = "vim";
