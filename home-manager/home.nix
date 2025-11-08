@@ -78,6 +78,8 @@
     gd="git diff";
     gst="git status";
     gvb="git checkout -b";
+    ggp="git push origin $(git branch --show-current)";
+    ggpush="git push origin $(git branch --show-current)";
   };
 
   programs.zsh.enable = true;
