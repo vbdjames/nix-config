@@ -29,7 +29,7 @@
   hardware.bluetooth.settings.General.FastConnectable = true;
   hardware.bluetooth.settings.Policy.AutoEnable = true;
 
-  networking.hostName = "hp840g8"; # Define your hostname.
+  networking.hostName = "sophie"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary

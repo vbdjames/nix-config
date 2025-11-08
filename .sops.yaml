@@ -2,10 +2,10 @@ keys:
   - &users:
     - &primary age1ahdzykvyjr2stggvcm6pf0dh67wk9tyevh5tj35qxwfm44sr93zqq4m8n9
   - &hosts:
-    - &hp840g8 age16jcmt6gmk3nayf0pjzztvln09rhjptv9df46r6u9mjrhuvdfmqgs5cv4wh
+    - &sophie age16jcmt6gmk3nayf0pjzztvln09rhjptv9df46r6u9mjrhuvdfmqgs5cv4wh
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini|sops)$
     key_groups:
     - age:
       - *primary
-      - *hp840g8
+      - *sophie

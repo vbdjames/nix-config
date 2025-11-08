@@ -48,7 +48,7 @@
     # These are usually stuff you would upstream into home-manager
     homeManagerModules = import ./modules/home-manager;
 
-    nixosConfigurations.hp840g8 = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.sophie = nixpkgs.lib.nixosSystem {
       modules = [
         ./nixos/configuration.nix
         sops-nix.nixosModules.sops
