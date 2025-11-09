@@ -8,6 +8,9 @@
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    _1password-shell-plugins.url = "github:1Password/shell-plugins";
+    _1password-shell-plugins.inputs.nixpkgs.follows = "nixpkgs";
+
     sops-nix = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -63,12 +66,12 @@
             };
           };
         }
-        home-manager.nixosModules.home-manager
-        {
+        home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.djames = import ./home-manager/home.nix;
           home-manager.backupFileExtension = "backup";
+          home-manager.extraSpecialArgs = { inherit inputs; };
         }
       ];
     };

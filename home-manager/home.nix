@@ -1,10 +1,11 @@
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
   home.username = "djames";
   home.homeDirectory = "/home/djames";
 
   home.packages = with pkgs; [
+    awscli2
     neofetch
     obsidian
   ];
@@ -70,6 +71,19 @@
   };
 
   home.stateVersion = "25.05";
+
+  home.file.".aws/config".text = ''
+    [default]
+  '';
+
+  imports = [ inputs._1password-shell-plugins.hmModules.default ];
+  programs._1password-shell-plugins = {
+    # enable 1Password shell plugins for bash, zsh, and fish shell
+    enable = true;
+    # the specified packages as well as 1Password CLI will be
+    # automatically installed and configured to use shell plugins
+    plugins = with pkgs; [ awscli2 ];
+  };
 
   programs.zsh = {
     enable = true;
