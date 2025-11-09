@@ -9,6 +9,7 @@
     awscli2
     neofetch
     obsidian
+    opentofu
   ];
 
   programs.thunderbird = {
@@ -100,6 +101,7 @@
         "getantidote/use-omz"        # handle OMZ dependencies
         "ohmyzsh/ohmyzsh path:lib"   # load OMZ's library
         "ohmyzsh/ohmyzsh path:plugins/git"
+        "ohmyzsh/ohmyzsh path:plugins/opentofu"
         "zsh-users/zsh-syntax-highlighting"
         "MichaelAquilina/zsh-you-should-use"
         "fdellwing/zsh-bat"
