@@ -5,6 +5,7 @@
   home.homeDirectory = "/home/djames";
 
   home.packages = with pkgs; [
+    ansible
     awscli2
     neofetch
     obsidian
@@ -102,6 +103,7 @@
         "zsh-users/zsh-syntax-highlighting"
         "MichaelAquilina/zsh-you-should-use"
         "fdellwing/zsh-bat"
+        "sparsick/ansible-zsh"
       ];
     };
   };
