@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, firefox-addons-allowUnfree, ...}: 
 
 {
   home.username = "djames";
@@ -92,6 +92,15 @@
     extensions = [
       { id = "aeblfdkhhhdcdjpifhhbdiojplfjncoa"; } # 1Password
     ];
+  };
+
+  programs.firefox = {
+    enable = true;
+    profiles.djames = {
+      extensions = with firefox-addons-allowUnfree; [
+        onepassword-password-manager
+      ];
+    };
   };
 
   programs.zsh = {

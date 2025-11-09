@@ -15,13 +15,20 @@
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ { 
+  outputs = inputs @ {
     self,
     nixpkgs,
+    nixpkgs-unstable,
     home-manager,
     sops-nix,
+    firefox-addons,
     ...
   }: let
     inherit (self) outputs;
@@ -43,7 +50,7 @@
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejanda);
 
     # Your custom packages and modifications, exported as overlays
-    overlays = import ./overlays { inherit inputs; };
+    overlays = import ./overlays {inherit inputs;};
     # Reusable nixos modules you might want to export
     # These are usually stuff you would upstream into nixpkgs
     nixosModules = import ./modules/nixos;
@@ -51,29 +58,41 @@
     # These are usually stuff you would upstream into home-manager
     homeManagerModules = import ./modules/home-manager;
 
-    nixosConfigurations.sophie = nixpkgs.lib.nixosSystem {
-      modules = [
-        ./nixos/configuration.nix
-        sops-nix.nixosModules.sops
-        {
-          sops = {
-            defaultSopsFile = ./secrets/secrets.yaml;
-            age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
-            secrets = {
-              "example-key" = {
-                owner = "djames";
+    nixosConfigurations = let
+      system = "x86_64-linux";
+      unstablePkgs = import nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
+      };
+    in {
+      sophie = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./nixos/configuration.nix
+          sops-nix.nixosModules.sops
+          {
+            sops = {
+              defaultSopsFile = ./secrets/secrets.yaml;
+              age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+              secrets = {
+                "example-key" = {
+                  owner = "djames";
+                };
               };
             };
-          };
-        }
-        home-manager.nixosModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.djames = import ./home-manager/home.nix;
-          home-manager.backupFileExtension = "backup";
-          home-manager.extraSpecialArgs = { inherit inputs; };
-        }
-      ];
+          }
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.djames = import ./home-manager/home.nix;
+            home-manager.backupFileExtension = "backup";
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+              firefox-addons-allowUnfree = unstablePkgs.callPackage firefox-addons {};
+            };
+          }
+        ];
+      };
     };
   };
 }
