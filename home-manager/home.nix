@@ -71,18 +71,20 @@
 
   home.stateVersion = "25.05";
 
-  home.shellAliases = {
-    ga="git add";
-    gcmsg="git commit -m";
-    gco="git checkout";
-    gd="git diff";
-    gst="git status";
-    gvb="git checkout -b";
-    ggp="git push origin $(git branch --show-current)";
-    ggpush="git push origin $(git branch --show-current)";
+  programs.zsh = {
+    enable = true;
+    antidote = {
+      enable = true;
+      plugins = [
+        "getantidote/use-omz"        # handle OMZ dependencies
+        "ohmyzsh/ohmyzsh path:lib"   # load OMZ's library
+        "ohmyzsh/ohmyzsh path:plugins/git"
+        "zsh-users/zsh-syntax-highlighting"
+        "MichaelAquilina/zsh-you-should-use"
+        "fdellwing/zsh-bat"
+      ];
+    };
   };
-
-  programs.zsh.enable = true;
 
   programs.ssh = {
     enable = true;
