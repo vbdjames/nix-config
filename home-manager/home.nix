@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   home.username = "djames";
@@ -85,6 +85,13 @@
     # the specified packages as well as 1Password CLI will be
     # automatically installed and configured to use shell plugins
     plugins = with pkgs; [ awscli2 ];
+  };
+
+  programs.chromium = {
+    enable = true;
+    extensions = [
+      { id = "aeblfdkhhhdcdjpifhhbdiojplfjncoa"; } # 1Password
+    ];
   };
 
   programs.zsh = {
