@@ -1,5 +1,5 @@
 # This file defines overlays
-{ inputs, ... }: {
+{inputs, ...}: {
   # This brings your custom packages from the 'pkgs' directory
   additions = final: _prev: import ../pkgs final.pkgs;
 
