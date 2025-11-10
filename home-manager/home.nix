@@ -16,6 +16,15 @@
     opentofu
   ];
 
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      scrolling = {
+        history = 100000;
+      };
+    };
+  };
+
   programs.thunderbird = {
     enable = true;
     profiles = {
