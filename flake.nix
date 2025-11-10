@@ -11,11 +11,6 @@
     _1password-shell-plugins.url = "github:1Password/shell-plugins";
     _1password-shell-plugins.inputs.nixpkgs.follows = "nixpkgs";
 
-    sops-nix = {
-      url = "github:mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,7 +22,6 @@
     nixpkgs,
     nixpkgs-unstable,
     home-manager,
-    sops-nix,
     firefox-addons,
     ...
   }: let
@@ -68,18 +62,6 @@
       sophie = nixpkgs.lib.nixosSystem {
         modules = [
           ./nixos/configuration.nix
-          sops-nix.nixosModules.sops
-          {
-            sops = {
-              defaultSopsFile = ./secrets/secrets.yaml;
-              age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
-              secrets = {
-                "example-key" = {
-                  owner = "djames";
-                };
-              };
-            };
-          }
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
