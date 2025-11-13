@@ -4,7 +4,8 @@
   inputs,
   firefox-addons-allowUnfree,
   ...
-}: {
+}:
+{
   home.username = "djames";
   home.homeDirectory = "/home/djames";
 
@@ -91,19 +92,19 @@
     [default]
   '';
 
-  imports = [inputs._1password-shell-plugins.hmModules.default];
+  imports = [ inputs._1password-shell-plugins.hmModules.default ];
   programs._1password-shell-plugins = {
     # enable 1Password shell plugins for bash, zsh, and fish shell
     enable = true;
     # the specified packages as well as 1Password CLI will be
     # automatically installed and configured to use shell plugins
-    plugins = with pkgs; [awscli2];
+    plugins = with pkgs; [ awscli2 ];
   };
 
   programs.chromium = {
     enable = true;
     extensions = [
-      {id = "aeblfdkhhhdcdjpifhhbdiojplfjncoa";} # 1Password
+      { id = "aeblfdkhhhdcdjpifhhbdiojplfjncoa"; } # 1Password
     ];
   };
 
