@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   inputs,
   firefox-addons-allowUnfree,
   ...
@@ -10,8 +11,13 @@
     inputs._1password-shell-plugins.hmModules.default
   ];
 
+
   home.username = "djames";
   home.homeDirectory = "/home/djames";
+  
+  home.file = {
+    ".background-image".source = (lib.custom.relativeToRoot "assets/pexels-kellie-churchman-371878-1001682.png");
+  };
 
   home.packages = with pkgs; [
     ansible
@@ -20,6 +26,14 @@
     obsidian
     opentofu
   ];
+
+  programs.plasma = {
+    enable = true;
+    workspace = {
+      lookAndFeel = "org.kde.breezedark.desktop";
+      wallpaper = "/home/${config.home.username}/.background-image";
+    };
+  };
 
   programs.alacritty = {
     enable = true;
