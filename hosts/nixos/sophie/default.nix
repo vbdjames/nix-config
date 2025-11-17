@@ -6,24 +6,22 @@
   inputs,
   config,
   pkgs,
+  lib,
   ...
 }:
 {
-  imports = [
+  imports = lib.flatten [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../../users/djames/nixos.nix
-    inputs.home-manager.nixosModules.home-manager
-    {
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.backupFileExtension = "bak";
-      home-manager.extraSpecialArgs = {
-        inherit inputs;
-        firefox-addons-allowUnfree = pkgs.callPackage inputs.firefox-addons { };
-      };
-      home-manager.users.djames = import ../../../users/djames/home.nix;
-    }
+
+    (map lib.custom.relativeToRoot [
+      "hosts/common/core"
+      "users/djames/nixos.nix"
+    ])
+  ];
+
+  home-manager.users.djames.imports = [
+    (lib.custom.relativeToRoot "users/djames/home.nix")
   ];
 
   # Bootloader.

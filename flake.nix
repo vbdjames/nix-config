@@ -53,7 +53,7 @@
               inherit inputs outputs lib;
               isDarwin = false;
             };
-            modules = [ 
+            modules = [
               ./hosts/nixos/${host}
             ];
           };
