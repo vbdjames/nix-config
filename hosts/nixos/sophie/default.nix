@@ -3,6 +3,7 @@
 # Help is available in the configuration.nix(5) man page and in the NixOS manual
 # (accessible by running ‘nixos-help’)
 {
+  inputs,
   config,
   pkgs,
   ...
@@ -11,6 +12,18 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../../../users/djames/nixos.nix
+    inputs.home-manager.nixosModules.home-manager
+    {
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.backupFileExtension = "bak";
+      home-manager.extraSpecialArgs = {
+        inherit inputs;
+        firefox-addons-allowUnfree = pkgs.callPackage inputs.firefox-addons { };
+      };
+      home-manager.users.djames = import ../../../users/djames/home.nix;
+    }
   ];
 
   # Bootloader.
@@ -92,21 +105,6 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.djames = {
-    isNormalUser = true;
-    description = "Doug James";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-    shell = pkgs.zsh;
-    packages = with pkgs; [
-      kdePackages.kate
-      #  thunderbird
-    ];
-  };
 
   programs.zsh.enable = true;
 
