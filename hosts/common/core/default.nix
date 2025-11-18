@@ -48,4 +48,8 @@ in
     inherit inputs;
     firefox-addons-allowUnfree = pkgs.callPackage inputs.firefox-addons { };
   };
+
+  environment.systemPackages = [
+    pkgs.just
+  ];
 }
