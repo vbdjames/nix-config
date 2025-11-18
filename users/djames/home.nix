@@ -25,6 +25,7 @@
     neofetch
     obsidian
     opentofu
+    todoist-electron
   ];
 
   programs.plasma = {
