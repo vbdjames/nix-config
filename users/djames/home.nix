@@ -11,12 +11,13 @@
     inputs._1password-shell-plugins.hmModules.default
   ];
 
-
   home.username = "djames";
   home.homeDirectory = "/home/djames";
-  
+
   home.file = {
-    ".background-image".source = (lib.custom.relativeToRoot "assets/pexels-kellie-churchman-371878-1001682.png");
+    ".background-image".source = (
+      lib.custom.relativeToRoot "assets/pexels-kellie-churchman-371878-1001682.png"
+    );
   };
 
   home.packages = with pkgs; [
@@ -132,6 +133,50 @@
       extensions = with firefox-addons-allowUnfree; [
         onepassword-password-manager
       ];
+      settings = {
+        "browser.aboutConfig.showWarning" = false;
+        "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+        "browser.newtabpage.activity-stream.feeds.topsites" = false;
+        "browser.newtabpage.activity-stream.showWeather" = false;
+        "browser.shell.checkDefaultBrowser" = false;
+        "browser.warnOnQuit" = false;
+        "browser.warnOnQuitShortcut" = false;
+        "browser.bookmarks.restore_default_bookmarks" = false;
+      };
+      bookmarks = {
+        force = true;
+        settings = [
+          {
+            name = "wikipedia";
+            tags = [ "wiki" ];
+            keyword = "wiki";
+            url = "https://en.wikipedia.org/wiki/Special:Search?search=%s&go=Go";
+          }
+          {
+            name = "kernel.org";
+            url = "https://www.kernel.org";
+          }
+          {
+            name = "Nix sites";
+            toolbar = true;
+            bookmarks = [
+              {
+                name = "homepage";
+                url = "https://nixos.org/";
+              }
+              {
+                name = "wiki";
+                tags = [
+                  "wiki"
+                  "nix"
+                ];
+                url = "https://wiki.nixos.org/";
+              }
+            ];
+          }
+        ];
+      };
+
     };
   };
 
