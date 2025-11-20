@@ -16,6 +16,7 @@
 
     (map lib.custom.relativeToRoot [
       "hosts/common/core"
+      "hosts/common/core/icon.nix"
       "users/djames/nixos.nix"
     ])
   ];
