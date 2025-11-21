@@ -25,6 +25,18 @@
     (lib.custom.relativeToRoot "users/djames/home.nix")
   ];
 
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    displaylink
+    git
+    sops
+    vim
+    wget
+    kdePackages.qtmultimedia
+    sddm-astronaut
+  ];
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -75,6 +87,7 @@
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.theme = "sddm-astronaut-theme";
   services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
@@ -120,16 +133,6 @@
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
-  ];
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    displaylink
-    git
-    sops
-    vim
-    wget
   ];
 
   environment.variables.EDITOR = "vim";
