@@ -35,6 +35,7 @@
       lookAndFeel = "org.kde.breezedark.desktop";
       wallpaper = "/home/${config.home.username}/.background-image";
     };
+    session.general.askForConfirmationOnLogout = false;
   };
 
   programs.alacritty = {
