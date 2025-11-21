@@ -16,7 +16,7 @@
 
   home.file = {
     ".background-image".source = (
-      lib.custom.relativeToRoot "assets/pexels-kellie-churchman-371878-1001682.png"
+      lib.custom.relativeToRoot "assets/astronaut.png"
     );
   };
 
