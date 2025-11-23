@@ -25,6 +25,24 @@
     (lib.custom.relativeToRoot "users/djames/home.nix")
   ];
 
+  security.pam.u2f = {
+    enable = true;
+    settings = {
+      interactive = false;
+      cue = true;
+      origin = "pam://yubi";
+      authfile = pkgs.writeText "u2f-mappings" (lib.concatStrings [
+        "djames"
+        ":RT4V6ZRfvm15At+AyQUGhfeu9YvkJepBPXWFSKCh/NbtlLO4WyBGtmORICyZ96la2Qz1AVwu3+e5/g4pqSNBuw==,StLdMlW9L5IuC1qigDKlgJ7+PJaAdzxo3shnvCvBsFtdpNaI6HtRPz6n19yvYhtlInVW8hWXsvK+N4zmlVmAIg==,es256,+presence"
+      ]);
+    };
+  };
+
+  security.pam.services = {
+    login.u2fAuth = true;
+    sudo.u2fAuth = true;
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
