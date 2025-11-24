@@ -1,6 +1,8 @@
 {
   pkgs,
   lib,
+  inputs,
+  self,
   ...
 }:
 {
@@ -10,7 +12,7 @@
   
   users.users.djames = {
     isNormalUser = true;
-    icon = (lib.custom.relativeToRoot "assets/djames.png");
+    icon = "${self}/assets/djames.png";
     # hashedPasswordFile = config.sops.secrets.example_password.path;
     description = "Doug James";
     extraGroups = [

@@ -8,20 +8,23 @@
   ...
 }:
 let
-  platform = if isDarwin then "darwin" else "nixos";
+  # platform = if isDarwin then "darwin" else "nixos";
+  platform = "nixos";
   platformModules = "${platform}Modules";
 in
 {
   imports = lib.flatten [
     inputs.home-manager.${platformModules}.home-manager
     inputs.sops-nix.${platformModules}.sops
-    (map lib.custom.relativeToRoot [
-      "hosts/common/core/${platform}.nix"
-    ])
+    ../core/nixos.nix
+    # (map lib.custom.relativeToRoot [
+      # "hosts/common/core/${platform}.nix"
+    # ])
   ];
 
   sops = {
-    defaultSopsFile = (lib.custom.relativeToRoot "secrets/secrets.yaml");
+    # defaultSopsFile = (lib.custom.relativeToRoot "secrets/secrets.yaml");
+    defaultSopsFile = ../../../secrets/secrets.yaml;
     validateSopsFiles = false;
 
     age = {
