@@ -14,9 +14,7 @@
   home.username = "djames";
   home.homeDirectory = "/home/djames";
 
-  home.file = {
-    ".background-image".source = (lib.custom.relativeToRoot "assets/astronaut.png");
-  };
+  home.file.".background-image".source = "${inputs.self}/assets/astronaut.png";
 
   home.packages = with pkgs; [
     ansible

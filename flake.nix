@@ -37,52 +37,65 @@
     };
   };
 
-  outputs =
+  outputs = { flake-parts, ... } @ inputs:
+    flake-parts.lib.mkFlake { inherit inputs; }
     {
-      self,
-      nixpkgs,
-      nix-darwin,
-      ...
-    }@inputs:
-    let
-      inherit (self) outputs;
-
-      forAllSystems = nixpkgs.lib.genAttrs [
+      debug = true;
+      systems = [
         "x86_64-linux"
-        "aarch64-darwin"
       ];
-
-      lib = nixpkgs.lib.extend (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
-    in
-    {
-      nixosConfigurations = builtins.listToAttrs (
-        map (host: {
-          name = host;
-          value = nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              inherit inputs outputs lib;
-              isDarwin = false;
-            };
-            modules = [
-              ./hosts/nixos/${host}
-            ];
-          };
-        }) (builtins.attrNames (builtins.readDir ./hosts/nixos))
-      );
-
-      darwinConfigurations = builtins.listToAttrs (
-        map (host: {
-          name = host;
-          value = nix-darwin.lib.darwinSystem {
-            specialArgs = {
-              inherit inputs outputs lib;
-              isDarwin = true;
-            };
-            modules = [ ./hosts/darwin/${host} ];
-          };
-        }) (builtins.attrNames (builtins.readDir ./hosts/darwin))
-      );
-
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
+      imports = [
+        ./hosts
+      ];
     };
 }
+
+#   outputs =
+#     {
+#       self,
+#       nixpkgs,
+#       nix-darwin,
+#       ...
+#     }@inputs:
+#     let
+#       inherit (self) outputs;
+
+#       forAllSystems = nixpkgs.lib.genAttrs [
+#         "x86_64-linux"
+#         "aarch64-darwin"
+#       ];
+
+#       lib = nixpkgs.lib.extend (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
+#     in
+#     {
+#       nixosConfigurations = builtins.listToAttrs (
+#         map (host: {
+#           name = host;
+#           value = nixpkgs.lib.nixosSystem {
+#             specialArgs = {
+#               inherit inputs outputs lib;
+#               isDarwin = false;
+#             };
+#             modules = [
+#               ./hosts/nixos/${host}
+#             ];
+#           };
+#         }) (builtins.attrNames (builtins.readDir ./hosts/nixos))
+#       );
+
+#       darwinConfigurations = builtins.listToAttrs (
+#         map (host: {
+#           name = host;
+#           value = nix-darwin.lib.darwinSystem {
+#             specialArgs = {
+#               inherit inputs outputs lib;
+#               isDarwin = true;
+#             };
+#             modules = [ ./hosts/darwin/${host} ];
+#           };
+#         }) (builtins.attrNames (builtins.readDir ./hosts/darwin))
+#       );
+
+#       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
+#     };
+# }
