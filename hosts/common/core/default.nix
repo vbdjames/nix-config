@@ -18,7 +18,7 @@ in
     inputs.sops-nix.${platformModules}.sops
     ../core/nixos.nix
     # (map lib.custom.relativeToRoot [
-      # "hosts/common/core/${platform}.nix"
+    # "hosts/common/core/${platform}.nix"
     # ])
   ];
 
@@ -39,14 +39,14 @@ in
     # because they will be output to /run/secrets-for-users and only when the user is assigned to a host.
     # This is from the video, and not guaranteed to be true yet
     secrets = {
-      hello = {};
+      hello = { };
     };
   };
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.backupFileExtension = "bak";
-  
+
   home-manager.extraSpecialArgs = {
     inherit inputs;
     firefox-addons-allowUnfree = pkgs.callPackage inputs.firefox-addons { };
