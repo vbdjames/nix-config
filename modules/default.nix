@@ -9,6 +9,7 @@ let
       ./common.nix
       ./locale.nix
       ./systemd-boot.nix
+      ./bluetooth.nix
     ]
   );
 in
@@ -22,6 +23,7 @@ in
       workstation = with modules; [
         locale
         systemd-boot
+        bluetooth
       ];
     };
   };

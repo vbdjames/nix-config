@@ -38,11 +38,6 @@
     sddm-astronaut
   ];
 
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-  hardware.bluetooth.settings.General.FastConnectable = true;
-  hardware.bluetooth.settings.Policy.AutoEnable = true;
-
   networking.hostName = "sophie";
   networking.networkmanager.enable = true;
 
