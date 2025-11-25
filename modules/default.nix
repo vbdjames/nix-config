@@ -8,6 +8,7 @@ let
     [
       ./common.nix
       ./locale.nix
+      ./systemd-boot.nix
     ]
   );
 in
@@ -20,6 +21,7 @@ in
       ];
       workstation = with modules; [
         locale
+        systemd-boot
       ];
     };
   };
