@@ -7,6 +7,7 @@ let
     }) 
     [
       ./common.nix
+      ./locale.nix
     ]
   );
 in
@@ -16,6 +17,9 @@ in
     profiles = {
       core = with modules; [
         common
+      ];
+      workstation = with modules; [
+        locale
       ];
     };
   };
