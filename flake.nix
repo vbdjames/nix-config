@@ -45,6 +45,7 @@
         "x86_64-linux"
       ];
       imports = [
+        ./modules
         ./hosts
       ];
       perSystem =

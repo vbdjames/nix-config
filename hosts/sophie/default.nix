@@ -13,6 +13,10 @@
 {
   imports = lib.flatten [
     ./hardware-configuration.nix
+    (with self.profiles; [
+      core
+    ])
+
     "${self}/hosts/common/core"
     "${self}/hosts/common/core/icon.nix"
     "${self}/users/djames/nixos.nix"
@@ -97,13 +101,6 @@
     enable = true;
     polkitPolicyOwners = [ "djames" ];
   };
-
-  nixpkgs.config.allowUnfree = true;
-
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
 
   environment.variables.EDITOR = "vim";
 

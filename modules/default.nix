@@ -1,0 +1,22 @@
+{ lib, ... }:
+let
+  modules = lib.listToAttrs (
+    map (x: {
+      name = lib.removeSuffix ".nix" (builtins.baseNameOf x);
+      value = x;
+    }) 
+    [
+      ./common.nix
+    ]
+  );
+in
+{
+  flake = {
+    nixosModules = modules;
+    profiles = {
+      core = with modules; [
+        common
+      ];
+    };
+  };
+}
