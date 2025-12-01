@@ -7,6 +7,7 @@ let
         value = x;
       })
       [
+        ./home
         ./bluetooth.nix
         ./common.nix
         ./locale.nix
@@ -25,6 +26,7 @@ in
       ];
       workstation = with modules; [
         bluetooth
+        home
         locale
         sound
         systemd-boot

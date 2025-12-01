@@ -48,6 +48,7 @@
       imports = [
         ./modules
         ./hosts
+        # ./pkgs
       ];
       perSystem =
         { pkgs, ... }:

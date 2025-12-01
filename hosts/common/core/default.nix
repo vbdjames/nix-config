@@ -14,7 +14,6 @@ let
 in
 {
   imports = lib.flatten [
-    inputs.home-manager.${platformModules}.home-manager
     inputs.sops-nix.${platformModules}.sops
     ../core/nixos.nix
     # (map lib.custom.relativeToRoot [
@@ -42,10 +41,6 @@ in
       hello = { };
     };
   };
-
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  home-manager.backupFileExtension = "bak";
 
   home-manager.extraSpecialArgs = {
     inherit inputs;
