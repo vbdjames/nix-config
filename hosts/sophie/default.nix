@@ -1,7 +1,3 @@
-# This is your system's configuration file.
-# Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
-# Help is available in the configuration.nix(5) man page and in the NixOS manual
-# (accessible by running ‘nixos-help’)
 {
   inputs,
   self,
@@ -18,11 +14,19 @@
       workstation
     ])
 
+    (with self.nixosModules; [
+      x11
+    ])
+
     "${self}/hosts/common/core"
     "${self}/hosts/common/core/icon.nix"
     "${self}/users/djames/nixos.nix"
 
   ];
+
+  networking = {
+    hostName = "sophie";
+  };
 
   home-manager.users.djames.imports = [
     "${self}/users/djames/home.nix"
@@ -38,26 +42,15 @@
     sddm-astronaut
   ];
 
-  networking.hostName = "sophie";
   networking.networkmanager.enable = true;
 
   services.openssh = {
     enable = true;
   };
 
-  services.xserver = {
-    enable = true;
-    videoDrivers = [ "displaylink" ];
-  };
-
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.theme = "sddm-astronaut-theme";
   services.desktopManager.plasma6.enable = true;
-
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
 
   services.printing.enable = true;
 

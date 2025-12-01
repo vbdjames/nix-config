@@ -12,6 +12,7 @@ let
         ./locale.nix
         ./sound.nix
         ./systemd-boot.nix
+        ./x11.nix
       ]
   );
 in
