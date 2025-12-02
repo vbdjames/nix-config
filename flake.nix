@@ -1,6 +1,25 @@
 {
   description = "vbdjames's nix configuration";
 
+  outputs =
+    { flake-parts, ... }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      debug = true;
+      systems = [
+        "x86_64-linux"
+      ];
+      imports = [
+        ./modules
+        ./hosts
+        # ./pkgs
+      ];
+      perSystem =
+        { pkgs, ... }:
+        {
+          formatter = pkgs.nixfmt-tree;
+        };
+    };
+  
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -38,22 +57,4 @@
     };
   };
 
-  outputs =
-    { flake-parts, ... }@inputs:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      debug = true;
-      systems = [
-        "x86_64-linux"
-      ];
-      imports = [
-        ./modules
-        ./hosts
-        # ./pkgs
-      ];
-      perSystem =
-        { pkgs, ... }:
-        {
-          formatter = pkgs.nixfmt-tree;
-        };
-    };
 }
