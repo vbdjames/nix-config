@@ -9,12 +9,13 @@
 {
   imports = lib.flatten [
     ./hardware-configuration.nix
-    (with self.profiles; [
-      core
-      workstation
-    ])
-
     (with self.nixosModules; [
+      common
+      bluetooth
+      home
+      locale
+      sound
+      systemd-boot
       x11
     ])
 
