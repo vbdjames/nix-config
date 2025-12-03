@@ -16,11 +16,11 @@
       locale
       sound
       systemd-boot
+      user-icon
       x11
     ])
 
     "${self}/hosts/common/core"
-    "${self}/hosts/common/core/icon.nix"
     "${self}/users/djames/nixos.nix"
 
   ];
