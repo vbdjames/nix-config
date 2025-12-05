@@ -22,6 +22,8 @@
       x11
     ])
 
+    "${self}/users/djames"
+
     "${self}/hosts/common/core"
     "${self}/users/djames/nixos.nix"
 
@@ -30,10 +32,6 @@
   system.stateVersion = "25.05"; # https://nixos.org/nixos/options.html
   nixpkgs.hostPlatform = "x86_64-linux";
   networking.hostName = "sophie";
-
-  home-manager.users.djames.imports = [
-    "${self}/users/djames/home.nix"
-  ];
 
   environment.systemPackages = with pkgs; [
     displaylink
