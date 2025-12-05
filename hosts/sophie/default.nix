@@ -22,6 +22,7 @@ in
       home
       locale
       networking
+      plasma6
       printing
       sound
       systemd-boot
@@ -53,8 +54,6 @@ in
     };
   };
 
-
-
   environment.systemPackages = with pkgs; [
     displaylink
     git
@@ -64,8 +63,6 @@ in
     kdePackages.qtmultimedia
     custom-sddm-astronaut
   ];
-
-  services.desktopManager.plasma6.enable = true;
 
   programs.zsh.enable = true;
 

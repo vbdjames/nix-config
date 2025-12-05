@@ -12,6 +12,7 @@ let
         ./common.nix
         ./locale.nix
         ./networking.nix
+        ./plasma6.nix
         ./printing.nix
         ./sound.nix
         ./systemd-boot.nix
