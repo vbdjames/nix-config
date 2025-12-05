@@ -43,10 +43,6 @@
     sddm-astronaut
   ];
 
-  services.openssh = {
-    enable = true;
-  };
-
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.theme = "sddm-astronaut-theme";
   services.desktopManager.plasma6.enable = true;
