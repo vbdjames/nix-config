@@ -11,6 +11,8 @@ let
         ./bluetooth.nix
         ./common.nix
         ./locale.nix
+        ./networking.nix
+        ./printing.nix
         ./sound.nix
         ./systemd-boot.nix
         ./user-icon.nix

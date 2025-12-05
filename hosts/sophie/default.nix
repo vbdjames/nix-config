@@ -14,6 +14,8 @@
       bluetooth
       home
       locale
+      networking
+      printing
       sound
       systemd-boot
       user-icon
