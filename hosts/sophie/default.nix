@@ -25,9 +25,9 @@
 
   ];
 
-  networking = {
-    hostName = "sophie";
-  };
+  system.stateVersion = "25.05"; # https://nixos.org/nixos/options.html
+  nixpkgs.hostPlatform = "x86_64-linux";
+  networking.hostName = "sophie";
 
   home-manager.users.djames.imports = [
     "${self}/users/djames/home.nix"
@@ -65,6 +65,4 @@
 
   environment.variables.EDITOR = "vim";
 
-  # https://nixos.org/nixos/options.html
-  system.stateVersion = "25.05";
 }

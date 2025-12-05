@@ -6,10 +6,11 @@ let
 in
 {
   flake = {
-    nixosConfigurations."sophie" = inputs.nixpkgs.lib.nixosSystem {
-      inherit specialArgs;
-      system = "x86_64-linux";
-      modules = [ ./sophie ];
+    nixosConfigurations = {
+      sophie = inputs.nixpkgs.lib.nixosSystem {
+        inherit specialArgs;
+        modules = [ ./sophie ];
+      };
     };
   };
 }
