@@ -6,6 +6,13 @@
   lib,
   ...
 }:
+let
+  custom-sddm-astronaut = pkgs.sddm-astronaut.override {
+    themeConfig = {
+      Background = "${self}/assets/pexels-kellie-churchman-371878-1001682.png";
+    };
+  };
+in
 {
   imports = lib.flatten [
     ./hardware-configuration.nix
@@ -33,6 +40,21 @@
   nixpkgs.hostPlatform = "x86_64-linux";
   networking.hostName = "sophie";
 
+  services.displayManager.sddm = {
+    enable = true;
+    extraPackages = with pkgs; [
+      custom-sddm-astronaut
+    ];
+    theme = "sddm-astronaut-theme";
+    settings = {
+      Theme = {
+        Current = "sddm-astronaut-theme";
+      };
+    };
+  };
+
+
+
   environment.systemPackages = with pkgs; [
     displaylink
     git
@@ -40,11 +62,9 @@
     vim
     wget
     kdePackages.qtmultimedia
-    sddm-astronaut
+    custom-sddm-astronaut
   ];
 
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.theme = "sddm-astronaut-theme";
   services.desktopManager.plasma6.enable = true;
 
   programs.zsh.enable = true;
