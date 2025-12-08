@@ -31,9 +31,6 @@ in
     ])
 
     "${self}/users/djames"
-
-    "${self}/hosts/common/core"
-
   ];
 
   system.stateVersion = "25.05"; # https://nixos.org/nixos/options.html
@@ -56,7 +53,7 @@ in
   environment.systemPackages = with pkgs; [
     displaylink
     git
-    sops
+    just
     vim
     wget
     kdePackages.qtmultimedia

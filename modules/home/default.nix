@@ -1,6 +1,7 @@
 {
   lib,
   inputs,
+  pkgs,
   ...
 }:
 let
@@ -19,12 +20,17 @@ in
   imports = [ inputs.home-manager.nixosModules.home-manager ];
 
   home-manager = {
+    extraSpecialArgs = {
+      inherit inputs;
+      firefox-addons-allowUnfree = pkgs.callPackage inputs.firefox-addons { };
+    };
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension = "bak";
 
     sharedModules = [
       homeModules.common
+      inputs.plasma-manager.homeModules.plasma-manager
     ];
   };
 }
