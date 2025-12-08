@@ -11,7 +11,6 @@
       imports = [
         ./modules
         ./hosts
-        # ./pkgs
       ];
       perSystem =
         { pkgs, ... }:
@@ -21,8 +20,8 @@
     };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";

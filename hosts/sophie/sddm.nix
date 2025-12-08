@@ -13,7 +13,7 @@ in
 {
   services.displayManager.sddm = {
     enable = true;
-    extraPackages = with pkgs; [
+    extraPackages = [
       custom-sddm-astronaut
     ];
     theme = "sddm-astronaut-theme";

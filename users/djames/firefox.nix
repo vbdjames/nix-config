@@ -5,13 +5,12 @@
 {
   programs.firefox = {
     enable = true;
+
     profiles.djames = {
       extensions.packages = [
         firefox-addons-allowUnfree.onepassword-password-manager
-        # todoist
+        # TODO: how to add these?
         # id = support@todoist.com
-
-        # obsidian web clipper
         # id = clipper@obsidian.md
       ];
       settings = {
