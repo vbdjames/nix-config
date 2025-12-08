@@ -33,7 +33,6 @@ in
     "${self}/users/djames"
 
     "${self}/hosts/common/core"
-    "${self}/users/djames/nixos.nix"
 
   ];
 
