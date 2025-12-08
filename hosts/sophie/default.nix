@@ -37,6 +37,7 @@
     just
     vim
     wget
+    nixd
   ];
 
   programs.zsh.enable = true;

@@ -109,7 +109,7 @@
       enable = true;
       profiles.default.extensions = with pkgs.vscode-extensions; [
         vscodevim.vim
-        bbenoist.nix
+        jnoortheen.nix-ide
       ];
     };
 
