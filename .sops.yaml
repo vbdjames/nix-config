@@ -4,7 +4,7 @@ keys:
   - &hosts:
     - &sophie age16jcmt6gmk3nayf0pjzztvln09rhjptv9df46r6u9mjrhuvdfmqgs5cv4wh
 creation_rules:
-  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+  - path_regex: hosts/sophie/secrets.yaml$
     key_groups:
     - age:
       - *djames

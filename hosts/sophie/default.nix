@@ -1,4 +1,5 @@
 {
+  inputs,
   self,
   pkgs,
   lib,
@@ -22,8 +23,15 @@
       x11
     ])
 
+    inputs.sops-nix.nixosModules.sops
+
     "${self}/users/djames"
   ];
+
+  sops = {
+    defaultSopsFile = ./secrets.yaml;
+    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  };
 
   system.stateVersion = "25.05"; # https://nixos.org/nixos/options.html
   nixpkgs.hostPlatform = "x86_64-linux";
@@ -36,6 +44,7 @@
     vim
     wget
     nixd
+    sops
   ];
 
   programs.zsh.enable = true;
