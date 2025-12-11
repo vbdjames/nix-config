@@ -8,6 +8,7 @@ let
       })
       [
         ./home
+        ./avahi.nix
         ./bluetooth.nix
         ./common.nix
         ./locale.nix

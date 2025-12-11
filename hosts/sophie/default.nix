@@ -11,6 +11,7 @@
     ./sddm.nix
     (with self.nixosModules; [
       common
+      avahi
       bluetooth
       home
       locale
