@@ -2,7 +2,7 @@ default:
   @just --list
 
 rebuild-pre:
-  git add *.nix
+  git add .
 
 rebuild-post:
   just check-sops
