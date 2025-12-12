@@ -51,6 +51,17 @@
         wallpaper = "/home/djames/.background-image";
       };
       session.general.askForConfirmationOnLogout = false;
+      kwin = {
+        nightLight = {
+          enable = true;
+          mode = "location";
+          location = { # Chesapeake, VA
+            latitude = "36.7682";
+            longitude = "-76.2875";
+          };
+          transitionTime = 30;
+        };
+      };
     };
 
     programs.alacritty = {
