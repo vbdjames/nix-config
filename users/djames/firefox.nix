@@ -21,26 +21,6 @@
         "browser.shell.checkDefaultBrowser" = false;
         "browser.warnOnQuit" = false;
         "browser.warnOnQuitShortcut" = false;
-        "browser.bookmarks.restore_default_bookmarks" = false;
-      };
-      bookmarks = {
-        force = true;
-        settings = [
-          {
-            name = "Nix sites";
-            toolbar = true;
-            bookmarks = [
-              {
-                name = "NixOS Options";
-                url = "https://search.nixos.org/options";
-              }
-              {
-                name = "Home Manager Options";
-                url = "https://home-manager-options.extranix.com";
-              }
-            ];
-          }
-        ];
       };
     };
   };
