@@ -9,9 +9,9 @@
     profiles.djames = {
       extensions.packages = [
         firefox-addons-allowUnfree.onepassword-password-manager
-        # TODO: how to add these?
-        # id = support@todoist.com
-        # id = clipper@obsidian.md
+        # TODO: how to add these programmatically?
+        # id = support@todoist.com (Todoist)
+        # id = clipper@obsidian.md (Obsidian Clipper)
       ];
       settings = {
         "browser.aboutConfig.showWarning" = false;
