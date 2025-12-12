@@ -42,6 +42,7 @@
       obsidian
       opentofu
       todoist-electron
+      calibre
     ];
 
     programs.plasma = {
