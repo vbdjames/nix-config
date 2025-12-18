@@ -56,7 +56,8 @@
         nightLight = {
           enable = true;
           mode = "location";
-          location = { # Chesapeake, VA
+          location = {
+            # Chesapeake, VA
             latitude = "36.7682";
             longitude = "-76.2875";
           };
