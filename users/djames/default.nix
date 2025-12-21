@@ -20,6 +20,7 @@
     shell = pkgs.zsh;
     packages = with pkgs; [
       kdePackages.kate
+      kdePackages.kompare
     ];
   };
 
