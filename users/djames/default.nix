@@ -5,6 +5,10 @@
   ...
 }:
 {
+  imports = [
+    ./syncthing.nix
+  ];
+
   users.users.djames = {
     isNormalUser = true;
     icon = "${self}/assets/djames.png";
@@ -33,6 +37,12 @@
 
     home.file.".aws/config".text = ''
       [default]
+    '';
+
+    home.file."code/.stglobalignore".source = "${self}/users/djames/stglobalignore";
+
+    home.file."code/.stignore".text = ''
+      #include .stglobalignore
     '';
 
     home.packages = with pkgs; [
