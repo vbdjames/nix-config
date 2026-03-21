@@ -16,6 +16,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "scanner"
     ];
     shell = pkgs.zsh;
     packages = with pkgs; [
@@ -48,14 +49,27 @@
     '';
 
     home.packages = with pkgs; [
+      aegisub
       ansible
       awscli2
+      chromium
+      koreader
       neofetch
       obsidian
       opentofu
+      remmina
       todoist-electron
       calibre
     ];
+
+    # xdg.desktopEntries = {
+    #   instapaper = {
+    #     name = "Instapaper";
+    #     exec = "${pkgs.chromium}/bin/chromium --app=https://instapaper.com/u --wm-class=instapaper";
+    #     type = "Application";
+    #     icon = "instapaper"; #TODO: need full path to an icon
+    #   };
+    # };
 
     programs.plasma = {
       enable = true;
@@ -150,6 +164,7 @@
         jnoortheen.nix-ide
       ];
     };
+
 
   };
 }

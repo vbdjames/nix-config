@@ -12,6 +12,7 @@
         # TODO: how to add these programmatically?
         # id = support@todoist.com (Todoist)
         # id = clipper@obsidian.md (Obsidian Clipper)
+        # id = instapaper (Instapaper)
       ];
       settings = {
         "browser.aboutConfig.showWarning" = false;

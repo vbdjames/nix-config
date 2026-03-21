@@ -17,6 +17,7 @@ let
         ./printing.nix
         ./sound.nix
         ./systemd-boot.nix
+        ./tailscale.nix
         ./user-icon.nix
         ./x11.nix
       ]

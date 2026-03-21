@@ -21,6 +21,7 @@
       printing
       sound
       systemd-boot
+      tailscale
       user-icon
       x11
     ])
@@ -29,6 +30,9 @@
 
     "${self}/users/djames"
   ];
+
+  hardware.sane.enable = true;
+  hardware.sane.drivers.scanSnap.enable = true;
 
   sops = {
     defaultSopsFile = ./secrets.yaml;
@@ -39,6 +43,13 @@
   nixpkgs.hostPlatform = "x86_64-linux";
   networking.hostName = "sophie";
 
+  fonts = {
+    packages = with pkgs; [
+    fontconfig
+    jetbrains-mono
+  ];
+  };
+
   environment.systemPackages = with pkgs; [
     displaylink
     git
@@ -47,6 +58,8 @@
     wget
     nixd
     sops
+    kdePackages.skanpage
+
   ];
 
   programs.zsh.enable = true;
@@ -56,6 +69,8 @@
     enable = true;
     polkitPolicyOwners = [ "djames" ];
   };
+
+  programs.partition-manager.enable = true;
 
   environment.variables.EDITOR = "vim";
 
